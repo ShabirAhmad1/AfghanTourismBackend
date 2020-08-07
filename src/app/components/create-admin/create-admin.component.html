@@ -1,0 +1,33 @@
+<div style="margin: 50px;">
+  <mat-card>
+    <h1 class="mat-display-1">Create Admin</h1>
+    <p>
+      Add credentials for new admin
+    </p>
+    <form class="form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <mat-form-field>
+        <input matInput required type="text" minlength="0" maxlength="300" ngModel name="Name" #Name='ngModel'
+          placeholder="Name" />
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput required type="email" minlength="0" maxlength="300" ngModel name="Email" #Email='ngModel'
+          placeholder="Email"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput required type="password" minlength="0" maxlength="300" ngModel name="Password" #Password='ngModel'
+          placeholder="Password" />
+      </mat-form-field>
+      <br>
+      <mat-checkbox ngModel name="Super">
+        Super Admin
+      </mat-checkbox>
+      <br>
+      <button [disabled]="!Name.valid || !Email.valid ||  !Password.valid" mat-raised-button
+      color="primary" style="margin-top: 10px;">
+        Submit
+      </button>
+    </form>
+  </mat-card>
+</div>

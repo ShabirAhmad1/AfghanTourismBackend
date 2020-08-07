@@ -1,0 +1,30 @@
+<div style="padding: 25px; text-align: center;">
+  <mat-card style="text-align: center; max-width: fit-content; margin: auto; padding: 25px;">
+    <div style="padding: 25px;">
+      <img src='./assets/images/Logo.png' width="200px" />
+    </div>
+    <mat-card-title>
+      Admin Dashboard
+    </mat-card-title>
+    <mat-card-subtitle>
+      Sign In
+    </mat-card-subtitle>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+      <mat-form-field>
+        <input matInput required minlength="6" maxlength="50" ngModel name="Email" type="email" #Email='ngModel'
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="Email" />
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput required minlength="6" maxlength="50" ngModel name="Password" type="password"
+          #Password='ngModel' placeholder="Password" />
+      </mat-form-field>
+      <br>
+
+      <button [disabled]="!Email.valid || !Password.valid" mat-raised-button color="primary">Login</button>
+      <div *ngIf="Wrong" class="text-danger">
+        Wrong Password / Username
+      </div>
+    </form>
+  </mat-card>
+</div>

@@ -1,0 +1,74 @@
+<ng-container *ngIf="this.Auth.isLoggedin">
+        <mat-drawer-container class="w-100">
+                <mat-drawer mode="side" opened style="width: 20%; position: fixed; left: 0; bottom: 0; padding: 15px;"
+                        class="bg-light p-2">
+                        <div style="padding: 25px;">
+                                <img src='./assets/images/Logo.png' width="100%" />
+                        </div>
+                        <!-- <button mat-raised-button class="w-100 mb-2">
+                        View Statistics
+                </button> -->
+                        <mat-expansion-panel class="mb-2">
+                                <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                                Posts
+                                        </mat-panel-title>
+                                </mat-expansion-panel-header>
+
+                                <button mat-stroked-button class="w-100 mb-2" routerLink='view-cuisines'>
+                                        Cuisines
+                                </button>
+                                <button mat-stroked-button class="w-100 mb-2" routerLink='view-dresses'>
+                                        Dress
+                                </button>
+                                <button mat-stroked-button class="w-100 mb-2" routerLink='view-attractions'>
+                                        Views
+                                </button>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel class="mb-2">
+                                <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                                Admin
+                                        </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <button mat-stroked-button class="w-100 mb-2" routerLink='create-admin'>
+                                        Create Admin
+                                </button>
+                                <button mat-stroked-button class="w-100 mb-2" routerLink='view-admins'>
+                                        View Admins
+                                </button>
+                        </mat-expansion-panel>
+                        <mat-expansion-panel class="mb-2">
+                                <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                                Hotels
+                                        </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <button mat-stroked-button class="w-100 mb-2" routerLink='view-hotels'>
+                                        Hotels list
+                                </button>
+                                <button mat-stroked-button class="w-100 mb-2" routerLink='manage-bookings'>
+                                        Hotel bookings
+                                </button>
+                        </mat-expansion-panel>
+                        <button mat-raised-button class="w-100 mb-2" routerLink='reviews'>
+                                Reviews
+                        </button>
+                </mat-drawer>
+                <mat-drawer-content class="bg-white p-4">
+                        <mat-toolbar>
+                                <mat-toolbar-row>
+                                        <div style="text-align: right; width: 100%;">
+                                                <button mat-button style="color: red;" (click)="signOut()">
+                                                        Sign Out
+                                                </button>
+                                        </div>
+                                </mat-toolbar-row>
+                        </mat-toolbar>
+                        <router-outlet></router-outlet>
+                </mat-drawer-content>
+        </mat-drawer-container>
+</ng-container>
+<ng-container *ngIf="!this.Auth.isLoggedin">
+        <app-sign-in></app-sign-in>
+</ng-container>

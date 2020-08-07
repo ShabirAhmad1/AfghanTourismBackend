@@ -1,0 +1,111 @@
+<mat-card>
+    <form class="form" #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <mat-form-field>
+            <input matInput required minlength="0" maxlength="300" ngModel name="Title" type="text" #Title='ngModel'
+                placeholder="Title" />
+        </mat-form-field>
+        <br>
+        <mat-form-field style="width: 100%;">
+            <textarea rows="4" matInput required minlength="0" maxlength="3000" ngModel name="Description" type="text"
+                #Description='ngModel' placeholder="Description">
+              </textarea>
+        </mat-form-field>
+
+        <!-- start of ingrediants -->
+        <ng-container *ngIf='variant == "cuisine"'>
+            <br />
+            <h3>
+                Ingrediants
+            </h3>
+            <ng-container *ngFor='let item of ingrediantsCount'>
+                <span style="margin-right: 10px;">
+                    <mat-form-field>
+                        <input matInput required type="text" ngModel name='ingrediant_{{item}}'
+                            placeholder="Ingrediant" />
+                    </mat-form-field>
+                </span>
+                <mat-form-field>
+                    <input matInput required type="text" ngModel name='quantity_{{item}}' placeholder="Quantity" />
+                </mat-form-field>
+                <br/>
+            </ng-container>
+            <br />
+            <button mat-raised-button color="primary" type="button" (click)='addIngrediant()'
+                style="margin-bottom: 10px;">
+                Add Ingrediant
+            </button>
+            <mat-divider></mat-divider>
+        </ng-container>
+
+        <!-- end of recipy ingrediants -->
+        <br />
+
+        <ng-container *ngIf='variant == "view"'>
+            <span style="margin-right: 10px;">
+                <mat-form-field>
+                    <input matInput required minlength="0" maxlength="300" ngModel name="Longitude" type="text"
+                        #Longitude='ngModel' placeholder="Longitude" />
+                </mat-form-field>
+            </span>
+            <mat-form-field>
+                <input matInput required minlength="0" maxlength="300" ngModel name="Latitude" type="text"
+                    #Latitude='ngModel' placeholder="Latitude" />
+            </mat-form-field>
+        </ng-container>
+        <br />
+
+        <ng-container *ngIf='variant == "hotel"'>
+            <div>
+                Price range
+            </div>
+            <span style="margin-right: 10px;">
+                <mat-form-field>
+                    <input matInput required ngModel name="Min" type="number"
+                        #Min='ngModel' placeholder="Min" />
+                </mat-form-field>
+            </span>
+            <mat-form-field>
+                <input matInput required ngModel name="Max" type="number"
+                    #Max='ngModel' placeholder="Max" />
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+                <input matInput required ngModel name="Rank" type="number"
+                    #Rank='ngModel' placeholder="Rank" />
+            </mat-form-field>
+        </ng-container>
+
+
+        <mat-divider></mat-divider>
+        <br />
+        <img [src]="_DomSanitizationService.bypassSecurityTrustUrl(image.link)" *ngFor="let image of images"
+            style="max-width: 100px; margin : 10px;" />
+
+        <ng-container *ngIf="imagesuploadcomplete == true ">
+            <div style="margin-bottom: 10px;">
+                Attach Images:<br />
+                <label class="custom-file-upload">
+                    <input type='file' (change)="onSelectFile($event)">
+                    <div class="text-center custom-file-upload">
+
+                        <i class="material-icons">
+                            attach_file
+                        </i>
+                    </div>
+                </label>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="imagesuploadcomplete == false">
+            <div class="text-center">
+                <mat-spinner diameter=14>
+                </mat-spinner>
+            </div>
+        </ng-container>
+        <mat-divider></mat-divider>
+        <button [disabled]="!Title.valid || !Description.valid ||  !imagesuploadcomplete || !form.valid" mat-raised-button
+            color="primary" style="margin-top: 10px;">
+            Post
+        </button>
+    </form>
+
+</mat-card>

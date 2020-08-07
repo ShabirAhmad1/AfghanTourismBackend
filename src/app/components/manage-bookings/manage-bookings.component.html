@@ -1,0 +1,61 @@
+<div style="margin: 50px;">
+  <mat-card>
+    <h1 class="mat-display-1">
+      Manage hotel works
+    </h1>
+    <ng-container *ngFor="let item of data;">
+      <mat-card style="margin-bottom: 10px;">
+        <mat-grid-list cols="6" rowHeight='220px'>
+          <mat-grid-tile [colspan]="2">
+            <div>
+              <strong>
+                Client Details
+              </strong>
+              <p>
+                Name : {{item.userId.name}}
+              </p>
+              <p>
+                Email : {{item.userId.email}}
+              </p>
+              <p>
+                Phone Number : {{item.phoneNumber}}
+              </p>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="2">
+            <div>
+              <strong>
+                Booking Details
+              </strong>
+              <p>
+                Hotel Name : {{item.hotelId.title}}
+              </p>
+              <p>
+                Adults : {{item.Adults}}
+              </p>
+              <p>
+                Children : {{item.Children}}
+              </p>
+              <p>
+                Booking from :
+                {{item.bookingDate.from.day}}-{{item.bookingDate.from.month}}-{{item.bookingDate.from.year}}
+                until : {{item.bookingDate.until.day}}-{{item.bookingDate.until.month}}-{{item.bookingDate.until.year}}
+              </p>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="2">
+            <div>
+              <mat-form-field>
+                <mat-select [(value)]=item.Status (selectionChange)='updateStatus($event.value,item._id)'>
+                  <mat-option value="Pending">Pending</mat-option>
+                  <mat-option value="Approved">Approved</mat-option>
+                  <mat-option value="Denied">Denied</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card>
+    </ng-container>
+  </mat-card>
+</div>

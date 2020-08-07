@@ -1,0 +1,54 @@
+<ng-container *ngIf='show'>
+  <mat-card style="position: relative; height: 100%;">
+    <mat-card-header>
+      <mat-card-title style="overflow-wrap: break-word;">
+        {{post.title}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        Created by {{post.createdBy ? post.createdBy.name : '' }}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content style="overflow-wrap: break-word; overflow: hidden; height: 100px;">
+      <ng-container *ngIf="this.variant === 'hotel'">
+        <strong>Rank</strong><span style="float: right;"><strong>{{post.rank}}</strong></span>
+        <br />
+        <strong>Min price ($)</strong><span style="float: right;"><strong>{{post.price.min}}</strong></span>
+        <br />
+        <strong>Max price ($)</strong><span style="float: right;"><strong>{{post.price.max}}</strong></span>
+        <br />
+      </ng-container>
+      Desciption:
+      <br />
+      {{post.description}}
+
+    </mat-card-content>
+    <ng-container *ngIf="post.images !== null && post.images.length > 0">
+      <img src={{post.images[0].link}} style="object-fit: contain; max-height: 200px;" mat-card-image>
+    </ng-container>
+    <ng-container *ngIf="post.images == null || post.images.length == 0 ">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"
+        style="object-fit: contain; max-height: 200px;" mat-card-image>
+    </ng-container>
+    <mat-card-actions style="position: absolute; bottom: 0; left: 0; padding:1rem; width: 100%; z-index: 9999;">
+      <span style="float: right;">
+        <button mat-button style="padding-left: 10px;" (click)="Edit()">
+          Edit
+          <i class="material-icons">
+            edit
+          </i>
+        </button>
+        <button mat-button style="color: red; stroke: red;" (click)="Delete()">
+          <ng-container *ngIf="!loadingDelete">
+            Delete
+            <i class="material-icons">
+              delete
+            </i>
+          </ng-container>
+          <ng-container *ngIf="loadingDelete">
+            <mat-spinner diameter="20"></mat-spinner>
+          </ng-container>
+        </button>
+      </span>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>
