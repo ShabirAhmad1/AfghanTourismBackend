@@ -5,7 +5,8 @@
     "client-proxy": "ng serve --port 5000 --proxy-config proxy.config.json",
     "client-start": "ng serve",
     "server-start": "nodemon ./bin/www",
-    "dev-start": "concurrently --kill-others \"npm run server-start\" \"npm run client-proxy\""
+    "dev-start": "concurrently --kill-others \"npm run server-start\" \"npm run client-proxy\"",
+    "start": "concurrently --kill-others \"npm run server-start\" \"npm run client-proxy\""
   },
   "private": true,
   "dependencies": {
