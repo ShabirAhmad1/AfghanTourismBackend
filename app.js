@@ -10,7 +10,6 @@ var userRouter = require("./server/routes/user");
 var postsRouter = require("./server/routes/posts");
 var reviewRouter = require("./server/routes/reviews");
 var app = express();
-var { MONGODB_URI } = process.env;
 app.use(cors());
 
 // view engine setup
@@ -21,7 +20,7 @@ app.set("view engine", "jade");
 const mongoose = require("mongoose");
 const mongoUrl = require("./config/mongo.json").url;
 console.log(mongoUrl);
-mongoose.connect(MONGODB_URI || mongoUrl, { useNewUrlParser: true });
+mongoose.connect(mongoUrl, { useNewUrlParser: true });
 mongoose.connection.on("connected", () => {
   console.log("connected successfully");
 });

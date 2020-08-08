@@ -4,9 +4,10 @@
   "scripts": {
     "client-proxy": "ng serve --port 5000 --proxy-config proxy.config.json",
     "client-start": "ng serve",
+    "build": "ng build",
     "server-start": "nodemon ./bin/www",
     "dev-start": "concurrently --kill-others \"npm run server-start\" \"npm run client-proxy\"",
-    "start": "concurrently --kill-others \"npm run server-start\" \"npm run client-proxy\""
+    "start": "nodemon ./bin/www"
   },
   "private": true,
   "dependencies": {
